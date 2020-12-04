@@ -8,7 +8,7 @@ ADD https://github.com/boramalper/magnetico/releases/download/$MAGNETICOW_VERSIO
 
 RUN chmod 755 /magneticow
 
-FROM gcr.io/distroless/cc:latest
+FROM gcr.io/distroless/cc-debian10:latest
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
