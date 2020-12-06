@@ -15,6 +15,6 @@ docker buildx build . \
     --platform="${BUILDX_PLATFORM}" \
     --build-arg BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
     --build-arg VCS_REF="${CI_COMMIT_SHORT_SHA}" \
-    --build-arg MAGNETICOD_VERSION="${VERSION}"
+    --build-arg MAGNETICOW_VERSION="${VERSION}"
     ${TAGS} \
     --push

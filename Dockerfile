@@ -25,7 +25,7 @@ ARG MAGNETICOW_VERSION
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
     org.label-schema.name="magneticow-distroless" \
-    org.label-schema.description="Distroless container for the Magneticod program" \
+    org.label-schema.description="Distroless container for the Magneticow program" \
     org.label-schema.url="https://guillaumedsde.gitlab.io/magneticow-distroless/" \
     org.label-schema.vcs-ref=$VCS_REF \
     org.label-schema.version=$MAGNETICOW_VERSION \
