@@ -4,9 +4,6 @@ FROM golang:1.15-buster AS build
 
 ARG MAGNETICOW_VERSION
 
-# disable go proxy because of
-# https://github.com/golang/go/issues/40949
-ARG GOPROXY=direct
 WORKDIR /magnetico
 
 RUN git clone https://github.com/boramalper/magnetico.git . \
