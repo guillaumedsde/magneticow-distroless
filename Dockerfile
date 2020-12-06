@@ -15,7 +15,7 @@ RUN make magneticow
 
 RUN mkdir /data
 
-FROM gcr.io/distroless/base-debian10:nonroot
+FROM gcr.io/distroless/cc-debian10:nonroot
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
