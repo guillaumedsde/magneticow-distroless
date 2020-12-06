@@ -9,6 +9,8 @@ WORKDIR /magnetico
 RUN git clone https://github.com/boramalper/magnetico.git . \
     && git checkout "${MAGNETICOW_VERSION}"
 
+RUN go get -u github.com/kevinburke/go-bindata/...
+
 RUN make magneticow
 
 RUN mkdir /data
