@@ -3,9 +3,6 @@ ARG MAGNETICOW_VERSION=v0.12.0
 # hadolint ignore=DL3029
 FROM --platform=$BUILDPLATFORM golang:1.15-buster AS build
 
-ARG TARGETPLATFORM
-ARG BUILDPLATFORM
-
 ARG MAGNETICOW_VERSION
 
 WORKDIR /magnetico
@@ -14,6 +11,9 @@ RUN git clone https://github.com/boramalper/magnetico.git . \
     && git checkout "${MAGNETICOW_VERSION}"
 
 RUN go get -u github.com/kevinburke/go-bindata/...
+
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # hadolint ignore=SC2086
