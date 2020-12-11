@@ -1,6 +1,7 @@
 ARG MAGNETICOW_VERSION=v0.12.0
 
-FROM golang:1.15-buster AS build
+# hadolint ignore=DL3029
+FROM --platform=$BUILDPLATFORM golang:1.15-buster AS build
 
 ARG MAGNETICOW_VERSION
 
@@ -11,7 +12,10 @@ RUN git clone https://github.com/boramalper/magnetico.git . \
 
 RUN go get -u github.com/kevinburke/go-bindata/...
 
-RUN make magneticow
+SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
+# hadolint ignore=SC2086
+RUN echo I am running on "$BUILDPLATFORM" building for "$TARGETPLATFORM" \
+    && GOOS="$(echo $TARGETPLATFORM | cut -f1 -d '/')" GOARCH="$(echo $TARGETPLATFORM | cut -f2 -d '/')" make magneticow
 
 RUN mkdir /data
 
