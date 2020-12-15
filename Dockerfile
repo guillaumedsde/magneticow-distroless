@@ -1,3 +1,4 @@
+# syntax = docker/dockerfile:1.0-experimental
 ARG MAGNETICOW_VERSION=v0.12.0
 
 # hadolint ignore=DL3029
