@@ -16,10 +16,13 @@ RUN go get -u github.com/kevinburke/go-bindata/...
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
 
+RUN printf "run: %s \nbuild: %s\n" "$BUILDPLATFORM" "$TARGETPLATFORM"
+
+COPY build/build_binary.sh ./
+
 SHELL ["/bin/bash", "-x", "-o", "pipefail", "-c"]
-# hadolint ignore=SC2086
-RUN printf "run: %s \nbuild: %s\n" "$BUILDPLATFORM" "$TARGETPLATFORM" \
-    && GOOS="$(echo $TARGETPLATFORM | cut -f1 -d '/')" GOARCH="$(echo $TARGETPLATFORM | cut -f2 -d '/')" make magneticow
+RUN chmod +x ./build_binary.sh \
+    && ./build_binary.sh
 
 RUN mkdir /data
 
@@ -40,7 +43,7 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
     org.label-schema.vendor="guillaumedsde" \
     org.label-schema.schema-version="1.0"
 
-COPY --from=build /go/bin/magneticow /magneticow
+COPY --from=build /magnetico/magneticow /magneticow
 
 VOLUME /data
 VOLUME /config
